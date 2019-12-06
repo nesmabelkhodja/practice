@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 let pos = [];
+let colorz = '#ff0000';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button style={{color: colorz}} className="square" onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -53,7 +54,8 @@ class Game extends React.Component {
         squares: Array(9).fill(null)
       }],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      color: 'black',
     };
   }
 
@@ -71,6 +73,7 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
+      color: 'red',
     });
   }
   
@@ -78,6 +81,7 @@ class Game extends React.Component {
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
+      color: 'red',
     });
   }
 
@@ -93,7 +97,9 @@ class Game extends React.Component {
       return (
       <li key={move}>
         <button onClick={() =>
-          this.jumpTo(move)}>{desc}</button>
+          this.jumpTo(move)}>
+          {desc}
+          </button>
           </li>
         );
     });
@@ -102,10 +108,10 @@ class Game extends React.Component {
     let squares = current.squares.slice();
     if (winner) {
       status = 'Winner: ' + winner;
-      squares[pos[0]]= '*';
-      squares[pos[1]]= '*';
-      squares[pos[2]]= '*';
-      current.squares = squares;
+      //squares[pos[1]] = state.color = 'red';
+      colorz = 'black';
+      //squares[pos[2]].state.color = red;
+      //current.squares = squares;
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
