@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+let pos = [];
+
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -97,8 +99,13 @@ class Game extends React.Component {
     });
 
     let status;
+    let squares = current.squares.slice();
     if (winner) {
       status = 'Winner: ' + winner;
+      squares[pos[0]]= '*';
+      squares[pos[1]]= '*';
+      squares[pos[2]]= '*';
+      current.squares = squares;
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -141,6 +148,7 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      pos = lines[i];
       return squares[a];
     }
   }
