@@ -7,7 +7,7 @@ let colorz = '#ff0000';
 
 function Square(props) {
   return (
-    <button style={{color: colorz}} className="square" onClick={props.onClick}>
+    <button style={{color: props.color}} className="square" onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -17,6 +17,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
+        color={this.props.color}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
@@ -108,8 +109,7 @@ class Game extends React.Component {
     let squares = current.squares.slice();
     if (winner) {
       status = 'Winner: ' + winner;
-      //squares[pos[1]] = state.color = 'red';
-      colorz = 'black';
+      //squares[pos[1]].color = 'red';
       //squares[pos[2]].state.color = red;
       //current.squares = squares;
     } else {
@@ -140,6 +140,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+
+//function to find pattern of three in a row
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
