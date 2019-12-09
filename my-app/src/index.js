@@ -109,9 +109,6 @@ class Game extends React.Component {
     let squares = current.squares.slice();
     if (winner) {
       status = 'Winner: ' + winner;
-      //squares[pos[1]].color = 'red';
-      //squares[pos[2]].state.color = red;
-      //current.squares = squares;
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
