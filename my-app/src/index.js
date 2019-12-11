@@ -7,7 +7,7 @@ let colorz = '#ff0000';
 
 function Square(props) {
   return (
-    <button style={{color: props.color}} className="square" onClick={props.onClick}>
+    <button style={{color: colorz}} className="square" onClick={props.onClick}>
       {props.value}
     </button>
   );
