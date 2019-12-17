@@ -1,0 +1,17 @@
+{
+  "info": {
+    "name": "Price"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "price": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "connection": "default",
+  "collectionName": "prices"
+}
